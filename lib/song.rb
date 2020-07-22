@@ -1,4 +1,4 @@
-require 'pry'
+
 class Song
   @@artists = []
   @@genres = []
@@ -12,19 +12,19 @@ class Song
     @genre = genre
     @@count += 1
     @@genres << genre
-    #@@genres.uniq!
+    @@genres #we are not using uniq! here, see down for explanation
     @@artists << artist
-    @@artists.uniq!
+    @@artists#we are not using uniq! here, see down for explanation
 
   end
   def self.count
     @@count
   end
   def self.artists
-    @@artists
+    @@artists.uniq! #we are using uniq! here bc we want to have unique results only after we call this class method
   end
   def self.genres
-    @@genres
+    @@genres.uniq! #we are using uniq! here bc we want to have unique results only after we call this class method
   end
 
   def self.genre_count
@@ -40,7 +40,14 @@ class Song
   end
 
   def self.artist_count
-
-  end
-
+    artist_count_hash = {}
+    @@artists.each do |artist|
+      if artist_count_hash[artist]
+        artist_count_hash[artist] += 1
+      else
+        artist_count_hash[artist] = 1
+      end
+    end
+    artist_count_hash
+end
 end
