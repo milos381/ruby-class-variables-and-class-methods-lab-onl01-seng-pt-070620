@@ -12,7 +12,11 @@ class Song
     @genre = genre
     @@count += 1
     @@genres << genre
+<<<<<<< HEAD
     @@genres #we are not using uniq! here, see down for explanation
+=======
+    @@genres.uniq!
+>>>>>>> d55ac4da3a2107cd5c28f819d96d1df1423cc7c2
     @@artists << artist
     @@artists#we are not using uniq! here, see down for explanation
 
